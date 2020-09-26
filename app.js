@@ -14,9 +14,10 @@ const catalogRouter = require("./routes/catalog");
 const app = express();
 
 const mongoose = require("mongoose");
-const mongoDB =
+const dev_db_url =
 	"mongodb+srv://userkbrdsk:380isegguEu18zse@cluster0" +
 	".uw7sv.azure.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
